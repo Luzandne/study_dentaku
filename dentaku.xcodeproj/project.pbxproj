@@ -15,6 +15,7 @@
 		5F7A20521FEE65F900E249EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7A20511FEE65F900E249EB /* main.m */; };
 		5F7A205C1FEE65F900E249EB /* dentakuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7A205B1FEE65F900E249EB /* dentakuTests.m */; };
 		5F7A20671FEE65F900E249EB /* dentakuUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7A20661FEE65F900E249EB /* dentakuUITests.m */; };
+		5F7A20771FEFF36300E249EB /* result.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7A20761FEFF36300E249EB /* result.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,9 @@
 		5F7A20621FEE65F900E249EB /* dentakuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dentakuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F7A20661FEE65F900E249EB /* dentakuUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dentakuUITests.m; sourceTree = "<group>"; };
 		5F7A20681FEE65F900E249EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F7A20741FEE681D00E249EB /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
+		5F7A20751FEFF34F00E249EB /* result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = result.h; sourceTree = "<group>"; };
+		5F7A20761FEFF36300E249EB /* result.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = result.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,9 @@
 				5F7A204D1FEE65F900E249EB /* LaunchScreen.storyboard */,
 				5F7A20501FEE65F900E249EB /* Info.plist */,
 				5F7A20511FEE65F900E249EB /* main.m */,
+				5F7A20741FEE681D00E249EB /* Define.h */,
+				5F7A20751FEFF34F00E249EB /* result.h */,
+				5F7A20761FEFF36300E249EB /* result.m */,
 			);
 			path = dentaku;
 			sourceTree = "<group>";
@@ -267,6 +274,7 @@
 			files = (
 				5F7A20471FEE65F800E249EB /* ViewController.m in Sources */,
 				5F7A20521FEE65F900E249EB /* main.m in Sources */,
+				5F7A20771FEFF36300E249EB /* result.m in Sources */,
 				5F7A20441FEE65F800E249EB /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
