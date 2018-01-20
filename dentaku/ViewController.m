@@ -16,13 +16,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.inputFirst = true;
     CGRect windowRange = [[UIScreen mainScreen] bounds];
     int centerWidth = windowRange.size.width / 2;
     int centerHeight = windowRange.size.height / 2;
-    int spaceWidth = 20;
-    int spaceHeight = 25;
-    int labelWidth = 100;
-    int labelHeight = 60;
+    int spaceWidth = 15;
+    int spaceHeight = 18;
+    int labelButtonWidth = 80;
+    int labelButtonHeight = 40;
+    int labelResultWidth = windowRange.size.width - spaceWidth * 10 - 15;
+    int labelResultHeight = 40;
     // 左の列のX座標
     int lineLeftPosition = centerWidth - spaceWidth * 8 - spaceWidth / 2;
     // 中央の列のX座標
@@ -46,117 +49,146 @@
     int line7Position = centerHeight - spaceHeight * 9;
     // 下から八番目のY座標
     int line8Position = centerHeight - spaceHeight * 12;
+    // 結果ラベルのY座標
+    int lineResultPosition = centerHeight - spaceHeight / 2;
+    // 入力値初期化
+    self.inputValue = 0;
     
-    
-    self.label0 = [[UILabel alloc]initWithFrame:CGRectMake(lineLeftPosition, line1Position, labelWidth, labelHeight)];
+//    int counter = 0;
+//    // 数字ボタン(1~9まで)配置
+//    for (int i = 1; i <= 3 ;i++){       //列
+//        for(int j = 1; j <= 3; j++){    //行
+//            ++counter;
+//            self.labelButton = [[UILabel alloc]initWithFrame:CGRectMake(lineLeftPosition + (spaceWidth * 6 * (j-1)), line2Position - (spaceHeight * 3 * (i - 1)), labelButtonWidth, labelButtonHeight)];
+//            self.labelButton.text = [NSString stringWithFormat:@"%d", counter];;
+//            self.labelButton.tag = counter;
+//            [self labelButtonSetting:self.labelButton];
+//            [self.view addSubview:self.labelButton];
+//        }
+//
+//    }
+    self.label0 = [[UILabel alloc]initWithFrame:CGRectMake(lineLeftPosition, line1Position, labelButtonWidth, labelButtonHeight)];
     self.label0.text = @"0";
     self.label0.tag = 0;
     [self labelButtonSetting:self.label0];
     [self.view addSubview:self.label0];
     
-    self.label1 = [[UILabel alloc]initWithFrame:CGRectMake(lineLeftPosition, line2Position, labelWidth, labelHeight)];
+    self.label1 = [[UILabel alloc]initWithFrame:CGRectMake(lineLeftPosition, line2Position, labelButtonWidth, labelButtonHeight)];
     self.label1.text = @"1";
     self.label1.tag = 1;
     [self labelButtonSetting:self.label1];
     [self.view addSubview:self.label1];
-
-    self.label2 = [[UILabel alloc]initWithFrame:CGRectMake(lineCenterPosition, line2Position, labelWidth, labelHeight)];
+    
+    self.label2 = [[UILabel alloc]initWithFrame:CGRectMake(lineCenterPosition, line2Position, labelButtonWidth, labelButtonHeight)];
     self.label2.text = @"2";
     self.label2.tag = 2;
     [self labelButtonSetting:self.label2];
     [self.view addSubview:self.label2];
     
-    self.label3 = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line2Position, labelWidth, labelHeight)];
+    self.label3 = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line2Position, labelButtonWidth, labelButtonHeight)];
     self.label3.text = @"3";
     self.label3.tag = 3;
     [self labelButtonSetting:self.label3];
     [self.view addSubview:self.label3];
     
-    self.label4 = [[UILabel alloc]initWithFrame:CGRectMake(lineLeftPosition, line3Position, labelWidth, labelHeight)];
+    self.label4 = [[UILabel alloc]initWithFrame:CGRectMake(lineLeftPosition, line3Position, labelButtonWidth, labelButtonHeight)];
     self.label4.text = @"4";
     self.label4.tag = 4;
     [self labelButtonSetting:self.label4];
     [self.view addSubview:self.label4];
     
-    self.label5 = [[UILabel alloc]initWithFrame:CGRectMake(lineCenterPosition, line3Position, labelWidth, labelHeight)];
+    self.label5 = [[UILabel alloc]initWithFrame:CGRectMake(lineCenterPosition, line3Position, labelButtonWidth, labelButtonHeight)];
     self.label5.text = @"5";
     self.label5.tag = 6;
     [self labelButtonSetting:self.label5];
     [self.view addSubview:self.label5];
     
-    self.label6 = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line3Position, labelWidth, labelHeight)];
+    self.label6 = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line3Position, labelButtonWidth, labelButtonHeight)];
     self.label6.text = @"6";
     self.label6.tag = 6;
     [self labelButtonSetting:self.label6];
     [self.view addSubview:self.label6];
     
-    self.label7 = [[UILabel alloc]initWithFrame:CGRectMake(lineLeftPosition, line4Position, labelWidth, labelHeight)];
+    self.label7 = [[UILabel alloc]initWithFrame:CGRectMake(lineLeftPosition, line4Position, labelButtonWidth, labelButtonHeight)];
     self.label7.text = @"7";
     self.label7.tag = 7;
     [self labelButtonSetting:self.label7];
     [self.view addSubview:self.label7];
     
-    self.label8 = [[UILabel alloc]initWithFrame:CGRectMake(lineCenterPosition, line4Position, labelWidth, labelHeight)];
+    self.label8 = [[UILabel alloc]initWithFrame:CGRectMake(lineCenterPosition, line4Position, labelButtonWidth, labelButtonHeight)];
     self.label8.text = @"8";
     self.label8.tag = 8;
     [self labelButtonSetting:self.label8];
     [self.view addSubview:self.label8];
     
-    self.label9 = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line4Position, labelWidth, labelHeight)];
+    self.label9 = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line4Position, labelButtonWidth, labelButtonHeight)];
     self.label9.text = @"9";
     self.label9.tag = 9;
     [self labelButtonSetting:self.label9];
     [self.view addSubview:self.label9];
+    // 数字ボタン0配置
+    self.labelButton = [[UILabel alloc]initWithFrame:CGRectMake(lineLeftPosition, line1Position, labelButtonWidth, labelButtonHeight)];
+    self.labelButton.text = @"0";
+    self.labelButton.tag = 0;
+    [self labelButtonSetting:self.labelButton];
+    [self.view addSubview:self.labelButton];
+
+//    // 小数点ボタン配置
+//    self.labelButton = [[UILabel alloc]initWithFrame:CGRectMake(lineCenterPosition, line1Position, labelButtonWidth, labelButtonHeight)];
+//    self.labelButton.text = @".";
+//    self.labelButton.tag = 10;
+//    [self labelButtonSetting:self.labelButton];
+//    [self.view addSubview:self.labelButton];
+    // =ボタン配置
+    self.labelButton = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line1Position, labelButtonWidth, labelButtonHeight)];
+    self.labelButton.text = @"=";
+    self.labelButton.tag = 11;
+    [self labelButtonSetting:self.labelButton];
+    [self.view addSubview:self.labelButton];
+    // +ボタン配置
+    self.labelButton = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line5Position, labelButtonWidth, labelButtonHeight)];
+    self.labelButton.text = @"+";
+    self.labelButton.tag = 12;
+    [self labelButtonSetting:self.labelButton];
+    [self.view addSubview:self.labelButton];
+    // -ボタン配置
+    self.labelButton = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line6Position, labelButtonWidth, labelButtonHeight)];
+    self.labelButton.text = @"-";
+    self.labelButton.tag = 13;
+    [self labelButtonSetting:self.labelButton];
+    [self.view addSubview:self.labelButton];
+    // ×ボタン配置
+    self.labelButton = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line7Position, labelButtonWidth, labelButtonHeight)];
+    self.labelButton.text = @"×";
+    self.labelButton.tag = 14;
+    [self labelButtonSetting:self.labelButton];
+    [self.view addSubview:self.labelButton];
+    // ÷ボタン配置
+    self.labelButton = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line8Position, labelButtonWidth, labelButtonHeight)];
+    self.labelButton.text = @"÷";
+    self.labelButton.tag = 15;
+    [self labelButtonSetting:self.labelButton];
+    [self.view addSubview:self.labelButton];
+    // オールクリアボタン配置
+    self.labelButton = [[UILabel alloc]initWithFrame:CGRectMake(lineLeftPosition, line8Position, labelButtonWidth, labelButtonHeight)];
+    self.labelButton.text = @"全部取消";
+    self.labelButton.tag = 16;
+    [self labelButtonSetting:self.labelButton];
+    [self.view addSubview:self.labelButton];
+    // モードボタン配置
+    self.labelCalMode = [[UILabel alloc]initWithFrame:CGRectMake(lineLeftPosition, line7Position, labelButtonWidth, labelButtonHeight)];
+    self.labelCalMode.text = @"";
+    [self labelButtonSetting:self.labelCalMode];
+    [self.view addSubview:self.labelCalMode];
+    // 計算結果ラベル配置
+    self.labelResult = [[UILabel alloc]initWithFrame:CGRectMake(lineLeftPosition, lineResultPosition, labelResultWidth, labelResultHeight)];
+    self.labelResult.text = @"0";
+    [self labelResultSetting:self.labelResult];
+    [self.view addSubview:self.labelResult];
     
-    self.labelDecimalPoint = [[UILabel alloc]initWithFrame:CGRectMake(lineCenterPosition, line1Position, labelWidth, labelHeight)];
-    self.labelDecimalPoint.text = @".";
-    self.labelDecimalPoint.tag = 10;
-    [self labelButtonSetting:self.labelDecimalPoint];
-    [self.view addSubview:self.labelDecimalPoint];
-    
-    self.labelEqual = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line1Position, labelWidth, labelHeight)];
-    self.labelEqual.text = @"=";
-    self.labelEqual.tag = 11;
-    [self labelButtonSetting:self.labelEqual];
-    [self.view addSubview:self.labelEqual];
-    // +ボタン
-    self.labelAdd = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line5Position, labelWidth, labelHeight)];
-    self.labelAdd.text = @"+";
-    self.labelAdd.tag = 12;
-    [self labelButtonSetting:self.labelAdd];
-    [self.view addSubview:self.labelAdd];
-    // -ボタン
-    self.labelSubtract = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line6Position, labelWidth, labelHeight)];
-    self.labelSubtract.text = @"+";
-    self.labelSubtract.tag = 13;
-    [self labelButtonSetting:self.labelSubtract];
-    [self.view addSubview:self.labelSubtract];
-    // ×ボタン
-    self.labelMultiply = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line7Position, labelWidth, labelHeight)];
-    self.labelMultiply.text = @"×";
-    self.labelMultiply.tag = 14;
-    [self labelButtonSetting:self.labelMultiply];
-    [self.view addSubview:self.labelMultiply];
-    // ÷ボタン
-    self.labelDevidedBy = [[UILabel alloc]initWithFrame:CGRectMake(lineRightPosition, line8Position, labelWidth, labelHeight)];
-    self.labelDevidedBy.text = @"÷";
-    self.labelDevidedBy.tag = 15;
-    [self labelButtonSetting:self.labelDevidedBy];
-    [self.view addSubview:self.labelDevidedBy];
-    // オールクリアボタン
-    self.labelAllClear = [[UILabel alloc]initWithFrame:CGRectMake(lineLeftPosition, line8Position, labelWidth, labelHeight)];
-    self.labelAllClear.text = @"全部取消";
-    self.labelAllClear.tag = 16;
-    [self labelButtonSetting:self.labelAllClear];
-    [self.view addSubview:self.labelAllClear];
-    // クリアボタン
-    self.labelClear = [[UILabel alloc]initWithFrame:CGRectMake(lineLeftPosition, line7Position, labelWidth, labelHeight)];
-    self.labelClear.text = @"入力一個取消";
-    self.labelClear.tag = 17;
-    [self labelButtonSetting:self.labelClear];
-    [self.view addSubview:self.labelClear];
 }
 
+// ラベルボタン設定
 -(UILabel *)labelButtonSetting:(UILabel *)labelButton {
     labelButton.backgroundColor = [UIColor lightGrayColor];
     labelButton.textColor = [UIColor blackColor];
@@ -170,12 +202,118 @@
     return labelButton;
 }
 
+// 結果ラベル設定
+-(UILabel *)labelResultSetting:(UILabel *)labelResult {
+    labelResult.backgroundColor = [UIColor whiteColor];
+    labelResult.textColor = [UIColor blackColor];
+    labelResult.textAlignment = NSTextAlignmentRight;
+    labelResult.userInteractionEnabled = YES;
+    labelResult.font = [UIFont systemFontOfSize:34];
+    //枠線
+    labelResult.layer.borderWidth = 1.0f;
+    //枠線の色
+    labelResult.layer.borderColor = [[UIColor blackColor] CGColor];
+
+    return labelResult;
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [[event allTouches] anyObject];
     //タッチイベント
-    UITouch *touchEv = [[event allTouches] anyObject];
-    
-    //タグを取得
-    
+    switch (touch.view.tag) {
+        case 0:
+            self.inputValue = 0;
+            [self reloadStatus];
+            break;
+        case 1:
+            self.inputValue = 1;
+            [self reloadStatus];
+            break;
+        case 2:
+            self.inputValue = 2;
+            [self reloadStatus];
+            break;
+        case 3:
+            self.inputValue = 3;
+            [self reloadStatus];
+            break;
+        case 4:
+            self.inputValue = 4;
+            [self reloadStatus];
+            break;
+        case 5:
+            self.inputValue = 5;
+            [self reloadStatus];
+            break;
+        case 6:
+            self.inputValue = 6;
+            [self reloadStatus];
+            break;
+        case 7:
+            self.inputValue = 7;
+            [self reloadStatus];
+            break;
+        case 8:
+            self.inputValue = 8;
+            [self reloadStatus];
+            break;
+        case 9:
+            self.inputValue = 9;
+            [self reloadStatus];
+            break;
+//        case 10:
+//            break;
+        case 11:    // =
+            self.inputMode = @"equal";
+            self.isCalculation = false;
+            self.inputFirst = true;
+            break;
+        case 12:    // 足し算
+            self.inputMode = @"addition";
+            self.isCalculation = true;
+            break;
+        case 13:    // 引き算
+            self.inputMode = @"subtraction";
+            self.isCalculation = true;
+            [self reloadStatus];
+            break;
+        case 14:    // 掛け算
+            self.inputMode = @"multiplication";
+            self.isCalculation = true;
+            [self reloadStatus];
+            break;
+        case 15:    // 割り算
+            self.inputMode = @"division";
+            self.isCalculation = true;
+            [self reloadStatus];
+            break;
+        case 16:    // オールクリア
+            self.inputMode = @"AC";
+            [self reloadStatus];
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)reloadStatus {
+    if(self.isCalculation){
+        
+    } else {
+        if(self.evadeInputValue != 0){
+            NSString *str = [NSString stringWithFormat:@"%d%d",self.evadeInputValue,self.inputValue];
+            self.labelResult.text = str;
+        } else {
+            self.labelResult.text = [NSString stringWithFormat:@"%d",self.inputValue];
+        }
+        self.evadeInputValue = [self.labelResult.text intValue];
+        if(self.evadeInputValue >= 2147483647) {
+            self.labelResult.text = [NSString stringWithFormat:@"%d",self.evadeInputValue];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"桁あふれです" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
